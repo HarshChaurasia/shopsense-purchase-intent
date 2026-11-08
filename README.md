@@ -55,6 +55,8 @@ https://github.com/HarshChaurasia/shopsense-purchase-intent
 ```
 ├── app.py                          # Streamlit app (loads saved models, no retraining)
 ├── train_models.py                 # training + evaluation script (all 5 models)
+├── tests/test_app.py               # headless app tests
+├── .streamlit/config.toml          # theme
 ├── ML_Assignment2_Training.ipynb   # notebook run on BITS Virtual Lab
 ├── requirements.txt
 ├── README.md
@@ -107,11 +109,17 @@ https://github.com/HarshChaurasia/shopsense-purchase-intent
 
 ## Streamlit app features
 
-1. **CSV upload** of test data (features + `Revenue`), with a one-click download of the bundled `test_data.csv`. Missing columns are validated and reported.
-2. **Model selection dropdown** for the 5 saved models, plus an adjustable **decision-threshold slider**.
-3. **Evaluation metrics**: Accuracy, AUC, Precision, Recall, F1, MCC, plus a ROC curve.
-4. **Confusion matrix** heatmap and the **classification report**.
-5. **Compare all models** tab: a side-by-side table and bar chart, highlighting the best model by MCC.
-6. **Predictions** tab with per-row purchase probability and CSV download.
+1. **CSV upload** of test data (features + `Revenue`). You can also switch to the bundled `test_data.csv`, which can be downloaded with one click.
+2. **Model selection dropdown** for the 5 saved models. Each shows its hyperparameters, and there is an adjustable **decision-threshold slider**.
+3. **Evaluation metrics**: Accuracy, AUC, Precision, Recall, F1 and MCC, plus a ROC curve and a histogram showing how well the predicted probabilities separate buyers from non-buyers.
+4. **Confusion matrix** heatmap (counts or % of the actual class) and the **classification report**.
+5. **Compare all models** tab: a metrics table (downloadable), a bar chart, overlaid **ROC curves for all 5 models**, and the best model by MCC.
+6. **Predictions** tab with per-row purchase probability, a "predicted buyers only" filter, and CSV download.
+7. **Data overview** tab: numeric summary and the actual purchase rate by month.
+8. **Input validation**: missing columns, unreadable target values and empty or garbage files each give a clear error message. Rows with missing values are dropped with a warning. A file without `Revenue` still gets predictions. A file with only one class shows AUC/MCC as *n/a* instead of crashing.
 
-The app only calls `joblib.load` and then `predict` / `predict_proba`. **No model is retrained on the uploaded data.**
+The app only calls `joblib.load` and then `predict` / `predict_proba`. **No model is retrained on the uploaded data.** At the default threshold of 0.50 it uses each model's own `predict()`, so the numbers match the comparison table above exactly.
+
+### Tests
+
+`tests/test_app.py` runs the app headlessly (Streamlit `AppTest`). It checks that every model's metrics match `model/metrics_summary.csv`, and that bad inputs are handled. Run it with `pip install pytest && pytest -q tests/` (11 tests).
