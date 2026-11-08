@@ -3,8 +3,8 @@
 **ML Assignment 2 · AIMLZG565 Machine Learning · BITS WILP M.Tech (AIML)**
 **Author:** Harsh
 
-- **GitHub repository:** __REPO_URL__
-- **Live Streamlit app:** __APP_URL__
+- **GitHub repository:** https://github.com/HarshChaurasia/shopsense-purchase-intent
+- **Live Streamlit app:** https://shopsense-purchase-intent.streamlit.app
 
 ---
 
@@ -50,7 +50,7 @@ Five classifiers (Logistic Regression, Decision Tree, KNN, Gaussian Naive Bayes,
 
 ## c. GitHub repository
 
-__REPO_URL__
+https://github.com/HarshChaurasia/shopsense-purchase-intent
 
 ```
 ├── app.py                          # Streamlit app (loads saved models, no retraining)
