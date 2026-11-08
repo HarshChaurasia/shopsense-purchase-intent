@@ -31,7 +31,7 @@ st.markdown("""
        padding:18px 24px; border-radius:12px; margin-bottom:14px;}
 .hero h1 {margin:0; font-size:1.9rem;}
 .hero p {margin:4px 0 0 0; opacity:.9;}
-div[data-testid="stMetric"] {background:#f1f5f9; border-radius:10px; padding:10px 14px;}
+div[data-testid="stMetric"] {background:rgba(15,118,110,.08); border:1px solid rgba(15,118,110,.25); border-radius:10px; padding:10px 14px;}
 </style>
 <div class="hero">
   <h1>🛒 ShopSense — Will this visitor buy?</h1>
