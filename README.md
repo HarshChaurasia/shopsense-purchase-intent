@@ -58,6 +58,7 @@ https://github.com/HarshChaurasia/shopsense-purchase-intent
 ├── tests/test_app.py               # headless app tests
 ├── .streamlit/config.toml          # theme
 ├── ML_Assignment2_Training.ipynb   # notebook run on BITS Virtual Lab
+├── screenshots/                    # BITS Virtual Lab execution screenshots
 ├── requirements.txt
 ├── README.md
 ├── test_data.csv                   # held-out test set (2,441 rows, 17 features + Revenue)
@@ -106,6 +107,14 @@ https://github.com/HarshChaurasia/shopsense-purchase-intent
 | Naive Bayes | Clearly the weakest on balanced metrics (Accuracy 0.71, MCC 0.41), but it has the **highest recall (0.88)**: it flags almost every buyer at the cost of many false alarms (precision 0.34). This comes from its independence assumption, which is violated here (page counts and their durations are strongly correlated), and from forcing one-hot and skewed features into Gaussian likelihoods. That makes its probabilities over-confident. It is useful only where missing a buyer is far costlier than a false alarm. |
 | Support Vector Machine | Second best on threshold metrics (Accuracy 0.904, F1 0.654, MCC 0.606), almost tied with the Decision Tree. The RBF kernel models non-linear interactions well. However, its **AUC (0.905) is the lowest of the strong models** because Platt-scaled probabilities rank sessions less smoothly than LR/DT. It is also the slowest to train (probability=True needs internal cross-validation). |
 | **Overall winner for this dataset** | **Decision Tree** (tuned): it ranks first on Accuracy, AUC, Precision, F1 and MCC, and it is fast and explainable. The SVM is a close runner-up. All models are limited mainly by the class imbalance (recall ≈ 0.53–0.58 at threshold 0.5). In practice the decision threshold or class weights should be tuned to the business cost of a missed buyer. |
+
+## BITS Virtual Lab execution
+
+`ML_Assignment2_Training.ipynb` was run on the **BITS Prayogshala Virtual Lab** (Machine Learning lab, AIMLZG565) on 8 Nov 2026. Lab host `ip-10-3-18-25.ap-south-1.compute.internal`, user `s2026aj05413`. The metrics it produced on the lab machine are identical to the comparison table above.
+
+![Lab environment: host, user and run time](screenshots/bits_lab_1_environment.png)
+![Training output for all 5 models](screenshots/bits_lab_2_training_output.png)
+![Final metrics table on the lab machine](screenshots/bits_lab_3_metrics_table.png)
 
 ## Streamlit app features
 
