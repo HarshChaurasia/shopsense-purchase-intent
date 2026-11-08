@@ -142,7 +142,8 @@ with st.sidebar:
                                "(higher recall, lower precision).")
     st.divider()
     st.subheader("📂 Test data")
-    source = st.radio("Data source", ["Upload my CSV", "Use bundled test_data.csv"], index=0)
+    source = st.radio("Data source", ["Upload my CSV", "Use bundled test_data.csv"], index=1,
+                      help="The bundled held-out test set loads by default; switch to upload your own CSV.")
     uploaded = None
     if source == "Upload my CSV":
         uploaded = st.file_uploader("CSV with the 17 features + Revenue", type=["csv"])

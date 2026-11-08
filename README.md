@@ -109,7 +109,7 @@ https://github.com/HarshChaurasia/shopsense-purchase-intent
 
 ## Streamlit app features
 
-1. **CSV upload** of test data (features + `Revenue`). You can also switch to the bundled `test_data.csv`, which can be downloaded with one click.
+1. **CSV upload** of test data (features + `Revenue`). The bundled held-out `test_data.csv` loads by default, so results are visible as soon as the app opens; switch the data source to upload your own file. The sample can also be downloaded with one click.
 2. **Model selection dropdown** for the 5 saved models. Each shows its hyperparameters, and there is an adjustable **decision-threshold slider**.
 3. **Evaluation metrics**: Accuracy, AUC, Precision, Recall, F1 and MCC, plus a ROC curve and a histogram showing how well the predicted probabilities separate buyers from non-buyers.
 4. **Confusion matrix** heatmap (counts or % of the actual class) and the **classification report**.
@@ -122,4 +122,4 @@ The app only calls `joblib.load` and then `predict` / `predict_proba`. **No mode
 
 ### Tests
 
-`tests/test_app.py` runs the app headlessly (Streamlit `AppTest`). It checks that every model's metrics match `model/metrics_summary.csv`, and that bad inputs are handled. Run it with `pip install pytest && pytest -q tests/` (11 tests).
+`tests/test_app.py` runs the app headlessly (Streamlit `AppTest`). It checks that every model's metrics match `model/metrics_summary.csv`, and that bad inputs are handled. Run it with `pip install pytest && pytest -q tests/` (13 tests).

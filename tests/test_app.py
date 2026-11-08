@@ -19,9 +19,9 @@ def run_app(tmp_path, csv_text=None, model=None):
     if csv_text is not None:
         (app_dir / "test_data.csv").write_text(csv_text)
     at = AppTest.from_file(str(app_dir / "app.py"), default_timeout=180).run()
-    at.radio[0].set_value("Use bundled test_data.csv").run()
+    at.sidebar.radio[0].set_value("Use bundled test_data.csv").run()
     if model:
-        at.selectbox[0].select(model).run()
+        at.sidebar.selectbox[0].select(model).run()
     return at
 
 
@@ -59,3 +59,19 @@ def test_bad_files_give_a_clear_error(tmp_path, bad_csv):
     at = run_app(tmp_path, bad_csv)
     assert not at.exception
     assert at.error
+
+
+def test_bundled_data_loads_by_default(tmp_path):
+    app_dir = tmp_path / "app"
+    shutil.copytree(ROOT, app_dir, ignore=shutil.ignore_patterns(".git", "tests", "__pycache__"))
+    at = AppTest.from_file(str(app_dir / "app.py"), default_timeout=180).run()
+    assert not at.exception
+    assert at.sidebar.radio[0].value == "Use bundled test_data.csv"
+    assert len(at.metric) >= 6
+
+
+def test_upload_mode_without_file_shows_hint(tmp_path):
+    at = run_app(tmp_path)
+    at.sidebar.radio[0].set_value("Upload my CSV").run()
+    assert not at.exception
+    assert any("Upload a test CSV" in i.value for i in at.info)
