@@ -4,7 +4,7 @@
 **Author:** Harsh
 
 - **GitHub repository:** https://github.com/HarshChaurasia/shopsense-purchase-intent
-- **Live Streamlit app:** https://shopsense-purchase-intent.streamlit.app
+- **Live Streamlit app:** https://shopsense-harsh-aiml.streamlit.app
 
 ---
 
