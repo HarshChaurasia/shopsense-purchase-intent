@@ -43,8 +43,12 @@ st.markdown("""
        padding:18px 24px; border-radius:12px; margin-bottom:14px;}
 .hero h1 {margin:0; font-size:1.9rem; color:#fff;}
 .hero p {margin:4px 0 0 0; opacity:.92;}
-div[data-testid="stMetric"] {background:rgba(15,118,110,.08); border:1px solid rgba(15,118,110,.25);
-       border-radius:10px; padding:10px 14px;}
+div[data-testid="stMetric"] {background:#ffffff; border:1px solid #99d5cf; border-left:5px solid #0f766e;
+       border-radius:10px; padding:10px 14px; box-shadow:0 1px 3px rgba(0,0,0,.08);}
+div[data-testid="stMetric"] [data-testid="stMetricLabel"],
+div[data-testid="stMetric"] [data-testid="stMetricLabel"] * {color:#475569 !important; font-weight:600;}
+div[data-testid="stMetric"] [data-testid="stMetricValue"],
+div[data-testid="stMetric"] [data-testid="stMetricValue"] * {color:#0f172a !important;}
 </style>
 <div class="hero">
   <h1>🛒 ShopSense — Will this visitor buy?</h1>
